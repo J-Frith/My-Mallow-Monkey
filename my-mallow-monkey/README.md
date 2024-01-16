@@ -1,4 +1,4 @@
-# My Mallow Monkey Frontend
+# My Mallow Monkey - Frontend
 
 `npm start` to run the frontend
 
