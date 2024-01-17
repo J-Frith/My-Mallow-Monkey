@@ -1,15 +1,19 @@
-import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
 import Route from "./components/Route";
-import MonkeyPage from "./pages/MyMonkeyPage";
+import LoginPage from "./pages/LoginPage";
+import MyMonkeyPage from "./pages/MyMonkeyPage";
 import FruitStandPage from "./pages/FruitStandPage";
 
 function App() {
   return (
     <div>
-      <Sidebar />
+      <Navbar />
       <div>
         <Route path="/">
-          <MonkeyPage />
+          <LoginPage />
+        </Route>
+        <Route path="/mymonkey">
+          <MyMonkeyPage />
         </Route>
         <Route path="/fruitstand">
           <FruitStandPage />

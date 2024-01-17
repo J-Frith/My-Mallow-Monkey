@@ -1,13 +1,14 @@
+import classNames from "classnames";
 import useNavigation from "../hooks/use-navigation";
 
-function Link({ to, children }) {
-  const { navigate } = useNavigation();
+function Link({ to, children, className, activeClassName }) {
+  const { navigate, currentPath } = useNavigation();
 
-  // FIXME: uncomment if using tailwind
-  // const classes = classNames(
-  //   className,
-  //   currentPath === to && activeClassName
-  // );
+  const classes = classNames(
+    "text-orange-500",
+    className,
+    currentPath === to && activeClassName
+  );
 
   const handleClick = (event) => {
     if (event.metaKey || event.ctrlKey) {
@@ -19,7 +20,7 @@ function Link({ to, children }) {
   };
 
   return (
-    <a href={to} onClick={handleClick}>
+    <a className={classes} href={to} onClick={handleClick}>
       {children}
     </a>
   );
