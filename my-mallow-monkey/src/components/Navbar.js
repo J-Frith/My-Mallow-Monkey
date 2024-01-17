@@ -1,5 +1,6 @@
 import Link from "./Link";
 
+// Creates a list of available pages that the user can navigate to
 function Navbar() {
   const links = [
     { label: "Login", path: "/" },
@@ -13,7 +14,7 @@ function Navbar() {
         key={link.label}
         to={link.path}
         className="mx-6 pb-2"
-        activeClassName="border-b-4 border-orange-500"
+        activeClassName="border-b-4 border-yellow-100"
       >
         {link.label}
       </Link>
@@ -21,7 +22,7 @@ function Navbar() {
   });
 
   return (
-    <div className="sticky top-0 flex justify-center bg-gray-200 p-4">
+    <div className="sticky top-0 flex justify-center bg-yellow-900 p-4">
       {renderedLinks}
     </div>
   );

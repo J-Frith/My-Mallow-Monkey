@@ -1,11 +1,13 @@
 import classNames from "classnames";
 import useNavigation from "../hooks/use-navigation";
 
+// A component that changes the current page in the app
+// NB: At time of writing, Link is used in the navigation bar
 function Link({ to, children, className, activeClassName }) {
   const { navigate, currentPath } = useNavigation();
 
   const classes = classNames(
-    "text-orange-500",
+    "text-yellow-100",
     className,
     currentPath === to && activeClassName
   );
