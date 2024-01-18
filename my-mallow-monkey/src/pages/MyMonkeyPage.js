@@ -48,12 +48,14 @@ function MyMonkeyPage() {
           alt="Mallow Monkey"
           className="size-1/3"
         />
-        <div className="flex flex-col gap-5 border p-5 ml-5">
-          {renderedButtons}
+        <div className="flex flex-col gap-5 justify-center items-center">
+          <div className="flex flex-col gap-5 border p-5 ml-5">
+            {renderedButtons}
+          </div>
+          <div className="bg-gray-500 p-5 font-bold text-white w-32 text-center">
+            {hunger}/100
+          </div>
         </div>
-      </div>
-      <div className="bg-gray-500 p-5 font-bold text-white w-30 border-4">
-        {hunger}/100
       </div>
     </div>
   );
