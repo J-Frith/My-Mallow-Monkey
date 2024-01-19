@@ -6,7 +6,7 @@ Acknowledgement:
 This file was modified from Stephen Grider's 'Modern React with Redux' Udemy course
 */
 
-// A component that changes the current page in the app
+// A component that changes the current page in the app when clicked
 // NB: At time of writing, Link is used in the navigation bar
 function Link({ to, children, className, activeClassName }) {
   const { navigate, currentPath } = useNavigation();

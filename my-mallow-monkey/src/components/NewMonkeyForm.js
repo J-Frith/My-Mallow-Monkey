@@ -2,12 +2,14 @@ import { useState } from "react";
 import classnames from "classnames";
 import Button from "./Button";
 
+// A form for creating a new mallow monkey
 function NewMonkeyForm() {
   const [name, setName] = useState("");
   const [isValid, setIsValid] = useState(false);
 
   const validNameRegex = /^[A-Za-z]+$/;
 
+  // Validates and updates the entered name
   const handleChange = (event) => {
     setName(event.target.value);
     if (event.target.value === "" || !validNameRegex.test(event.target.value)) {
@@ -25,6 +27,7 @@ function NewMonkeyForm() {
     setIsValid(false);
   };
 
+  // Changes input box font color if the name is invalid
   const nameInputClasses = classnames("border ml-2 mt-2", {
     "text-red-500": !isValid,
     "text-black": isValid,

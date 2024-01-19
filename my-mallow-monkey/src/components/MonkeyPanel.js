@@ -1,5 +1,6 @@
 import Button from "./Button";
 
+// Displays a mallow monkey and buttons for different kinds of food
 function MonkeyPanel({ hunger, setHunger, foodCounts, setFoodCounts }) {
   const foodTypes = ["Banana", "Grape", "Watermelon"];
 

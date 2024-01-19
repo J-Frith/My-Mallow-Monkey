@@ -6,6 +6,7 @@ Acknowledgement:
 This file was modified from Stephen Grider's 'Modern React with Redux' Udemy course
 */
 
+// A component that displays a modal window (a message box that overlays other content)
 function Modal({ children, actionBar }) {
   // Disable scrolling while the modal window is open
   useEffect(() => {
