@@ -9,12 +9,12 @@ import NewMonkeyForm from "../components/NewMonkeyForm";
 function MyMonkeyPage({
   user,
   setUser,
+  monkeyName,
+  setMonkeyName,
   foodCounts,
   setFoodCounts,
   hunger,
   setHunger,
-  showLoginModal,
-  setShowLoginModal,
 }) {
   // Handler for Google login success
   const handleLoginSuccess = async (credentialResponse) => {
@@ -22,7 +22,6 @@ function MyMonkeyPage({
     setUser(decodedResponse.email);
     alert(`Successfully logged in as: ${decodedResponse.email}`);
     await getUserData(user);
-    setShowLoginModal(false);
   };
 
   // Handler for Google login error
@@ -32,12 +31,14 @@ function MyMonkeyPage({
   };
 
   // Function to get user monkey and food data if it exists
-  const getUserData = async (user_email) => {
+  const getUserData = async (userEmail) => {
     try {
       const response = await axios.get(
-        `http://localhost:3005/monkey/${user_email}`
+        `http://localhost:3005/monkey/${userEmail}`
       );
-      console.log(response.data.userMonkey); // FIXME: store userMonkey properties in state variables
+      // FIXME: store userMonkey properties in state variables
+      console.log("GET monkey with userMonkey res", response.data.userMonkey);
+      console.log("'user' after login success is", user); //delme
     } catch {
       console.error("Error in getUserData()");
     }
@@ -58,17 +59,22 @@ function MyMonkeyPage({
 
   return (
     <div className="flex flex-col items-center">
-      {showLoginModal ? (
+      {!user ? (
         modal
-      ) : user ? (
+      ) : monkeyName ? (
         <MonkeyPanel
+          monkeyName={monkeyName}
           foodCounts={foodCounts}
           setFoodCounts={setFoodCounts}
           hunger={hunger}
           setHunger={setHunger}
         />
       ) : (
-        <NewMonkeyForm />
+        <NewMonkeyForm
+          user={user}
+          monkeyName={monkeyName}
+          setMonkeyName={setMonkeyName}
+        />
       )}
     </div>
   );

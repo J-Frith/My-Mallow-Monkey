@@ -1,9 +1,10 @@
 import { useState } from "react";
 import classnames from "classnames";
+import axios from "axios";
 import Button from "./Button";
 
 // A form for creating a new mallow monkey
-function NewMonkeyForm() {
+function NewMonkeyForm({ user, setMonkeyName }) {
   const [name, setName] = useState("");
   const [isValid, setIsValid] = useState(false);
 
@@ -19,12 +20,31 @@ function NewMonkeyForm() {
     }
   };
 
-  const handleSubmit = (event) => {
+  // Creates a new monkey for the user
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("You named your monkey:", name); // FIXME: API call
+    // Update input form state
     setName("");
     setIsValid(false);
+
+    // Create new monkey
+    await postNewMonkey(name);
+  };
+
+  // Function to create a new monkey in the backend
+  const postNewMonkey = async (newMonkeyName) => {
+    try {
+      await axios.post(`http://localhost:3005/monkey/newmonkey`, {
+        user: user,
+        name: newMonkeyName,
+      });
+      setMonkeyName(newMonkeyName);
+    } catch {
+      console.error("Error in POST new monkey route.");
+      alert("Error: failed to create a new monkey.");
+      return;
+    }
   };
 
   // Changes input box font color if the name is invalid

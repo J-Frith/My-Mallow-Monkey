@@ -8,6 +8,9 @@ function App() {
   // State tracking the logged in user
   const [user, setUser] = useState(null);
 
+  // State tracking monkey name
+  const [monkeyName, setMonkeyName] = useState(null);
+
   // State tracking counts for each type of food
   const [foodCounts, setFoodCounts] = useState({
     Banana: 3,
@@ -18,9 +21,6 @@ function App() {
   // State tracking monkey hunger level
   const [hunger, setHunger] = useState(75);
 
-  // State tracking whether the user needs to login or not
-  const [showLoginModal, setShowLoginModal] = useState(!user);
-
   return (
     <div>
       <Navbar />
@@ -29,12 +29,12 @@ function App() {
           <MyMonkeyPage
             user={user}
             setUser={setUser}
+            monkeyName={monkeyName}
+            setMonkeyName={setMonkeyName}
             foodCounts={foodCounts}
             setFoodCounts={setFoodCounts}
             hunger={hunger}
             setHunger={setHunger}
-            showLoginModal={showLoginModal}
-            setShowLoginModal={setShowLoginModal}
           />
         </Route>
         <Route path="/fruitstand">

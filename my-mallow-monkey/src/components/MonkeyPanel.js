@@ -1,7 +1,13 @@
 import Button from "./Button";
 
 // Displays a mallow monkey and buttons for different kinds of food
-function MonkeyPanel({ hunger, setHunger, foodCounts, setFoodCounts }) {
+function MonkeyPanel({
+  monkeyName,
+  hunger,
+  setHunger,
+  foodCounts,
+  setFoodCounts,
+}) {
   const foodTypes = ["Banana", "Grape", "Watermelon"];
 
   // Handler for food type button to adjust appropriate food counter and hunger level
@@ -37,6 +43,7 @@ function MonkeyPanel({ hunger, setHunger, foodCounts, setFoodCounts }) {
         className="size-1/3"
       />
       <div className="flex flex-col gap-5 justify-center items-center">
+        <h1 className="text-3xl font-bold">{monkeyName}</h1>
         <div className="flex flex-col gap-5 border p-5 ml-5">
           {renderedButtons}
         </div>
