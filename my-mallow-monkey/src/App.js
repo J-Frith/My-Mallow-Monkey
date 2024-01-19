@@ -18,6 +18,9 @@ function App() {
   // State tracking monkey hunger level
   const [hunger, setHunger] = useState(75);
 
+  // State tracking whether the user needs to login or not
+  const [showLoginModal, setShowLoginModal] = useState(!user);
+
   return (
     <div>
       <Navbar />
@@ -30,6 +33,8 @@ function App() {
             setFoodCounts={setFoodCounts}
             hunger={hunger}
             setHunger={setHunger}
+            showLoginModal={showLoginModal}
+            setShowLoginModal={setShowLoginModal}
           />
         </Route>
         <Route path="/fruitstand">

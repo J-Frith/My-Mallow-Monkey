@@ -1,8 +1,9 @@
-import { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import Button from "../components/Button";
+import axios from "axios";
 import Modal from "../components/Modal";
+import MonkeyPanel from "../components/MonkeyPanel";
+import NewMonkeyForm from "../components/NewMonkeyForm";
 
 // Page for the user to interact with their monkey
 function MyMonkeyPage({
@@ -12,48 +13,35 @@ function MyMonkeyPage({
   setFoodCounts,
   hunger,
   setHunger,
+  showLoginModal,
+  setShowLoginModal,
 }) {
-  const foodTypes = ["Banana", "Grape", "Watermelon"];
-
-  const [showModal, setShowModal] = useState(!user);
-
-  // Handler for food type button to adjust appropriate food counter and hunger level
-  const handleFoodClick = (foodName) => {
-    if (hunger + 5 <= 100 && foodCounts[foodName] > 0) {
-      setFoodCounts((prevCounts) => {
-        const newCounts = { ...prevCounts };
-        newCounts[foodName] -= 1;
-        return newCounts;
-      });
-
-      setHunger((prevHunger) => {
-        return prevHunger + 5;
-      });
-    }
-  };
-
-  // Maps each food type to a button
-  const renderedButtons = foodTypes.map((name, index) => (
-    <div key={index} className="flex flex-row gap-2 items-center">
-      <Button onClick={() => handleFoodClick(name)} secondary>
-        {name}
-      </Button>
-      <p>{foodCounts[name]}</p>
-    </div>
-  ));
-
   // Handler for Google login success
   const handleLoginSuccess = async (credentialResponse) => {
     const decodedResponse = jwtDecode(credentialResponse.credential);
     setUser(decodedResponse.email);
     alert(`Successfully logged in as: ${decodedResponse.email}`);
-    setShowModal(false);
+    await getUserData(user);
+    setShowLoginModal(false);
   };
 
   // Handler for Google login error
   const handleLoginError = () => {
     alert("ERROR: Google login failed. Refresh the page to try again.");
     setUser(null);
+  };
+
+  // Function to get user monkey and food data if it exists
+  const getUserData = async (user_email) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3005/monkey/${user_email}`
+      );
+      console.log(response.data.userMonkey); //delme
+      setUser(response.data.userMonkey);
+    } catch {
+      console.error("Error in getUserData()");
+    }
   };
 
   // Custom modal window that displays a Google login button
@@ -71,23 +59,18 @@ function MyMonkeyPage({
 
   return (
     <div className="flex flex-col items-center">
-      {showModal && modal}
-      <p>FIXME: {user} is to be used in future with backend calls!</p>
-      <div className="flex items-center justify-center mt-5">
-        <img
-          src={`${process.env.PUBLIC_URL}/images/mallow-monkey.png`}
-          alt="Mallow Monkey"
-          className="size-1/3"
+      {showLoginModal ? (
+        modal
+      ) : user ? (
+        <MonkeyPanel
+          foodCounts={foodCounts}
+          setFoodCounts={setFoodCounts}
+          hunger={hunger}
+          setHunger={setHunger}
         />
-        <div className="flex flex-col gap-5 justify-center items-center">
-          <div className="flex flex-col gap-5 border p-5 ml-5">
-            {renderedButtons}
-          </div>
-          <div className="bg-gray-500 p-5 font-bold text-white w-32 text-center">
-            {hunger}/100
-          </div>
-        </div>
-      </div>
+      ) : (
+        <NewMonkeyForm />
+      )}
     </div>
   );
 }
