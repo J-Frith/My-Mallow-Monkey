@@ -1,4 +1,4 @@
-import className from "classnames";
+import classnames from "classnames";
 
 /*
 Acknowledgement:
@@ -7,7 +7,7 @@ This file was modified from Stephen Grider's 'Modern React with Redux' Udemy cou
 
 // A custom button component for consistent styling across the app
 function Button({ children, primary, secondary, rounded, ...rest }) {
-  const classes = className(
+  const classes = classnames(
     rest.className,
     "flex items-center px-3 py-1.5 border",
     {

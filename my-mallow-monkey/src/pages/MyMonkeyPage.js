@@ -37,8 +37,7 @@ function MyMonkeyPage({
       const response = await axios.get(
         `http://localhost:3005/monkey/${user_email}`
       );
-      console.log(response.data.userMonkey); //delme
-      setUser(response.data.userMonkey);
+      console.log(response.data.userMonkey); // FIXME: store userMonkey properties in state variables
     } catch {
       console.error("Error in getUserData()");
     }
