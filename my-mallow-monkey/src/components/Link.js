@@ -1,6 +1,11 @@
 import classNames from "classnames";
 import useNavigation from "../hooks/use-navigation";
 
+/*
+Acknowledgement:
+This file was modified from Stephen Grider's 'Modern React with Redux' Udemy course
+*/
+
 // A component that changes the current page in the app
 // NB: At time of writing, Link is used in the navigation bar
 function Link({ to, children, className, activeClassName }) {

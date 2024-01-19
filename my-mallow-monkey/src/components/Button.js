@@ -1,5 +1,10 @@
 import className from "classnames";
 
+/*
+Acknowledgement:
+This file was modified from Stephen Grider's 'Modern React with Redux' Udemy course
+*/
+
 // A custom button component for consistent styling across the app
 function Button({ children, primary, secondary, rounded, ...rest }) {
   const classes = className(

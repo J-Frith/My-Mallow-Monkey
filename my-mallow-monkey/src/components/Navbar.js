@@ -1,10 +1,14 @@
 import Link from "./Link";
 
+/*
+Acknowledgement:
+This file was based on a component from Stephen Grider's 'Modern React with Redux' Udemy course
+*/
+
 // Creates a list of available pages that the user can navigate to
 function Navbar() {
   const links = [
-    { label: "Login", path: "/" },
-    { label: "My Mallow Monkey", path: "/mymonkey" },
+    { label: "My Mallow Monkey", path: "/" },
     { label: "Fruit Stand", path: "/fruitstand" },
   ];
 

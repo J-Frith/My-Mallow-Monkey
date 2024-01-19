@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Route from "./components/Route";
-import LoginPage from "./pages/LoginPage";
 import MyMonkeyPage from "./pages/MyMonkeyPage";
 import FruitStandPage from "./pages/FruitStandPage";
 
@@ -24,11 +23,9 @@ function App() {
       <Navbar />
       <div>
         <Route path="/">
-          <LoginPage setUser={setUser} />
-        </Route>
-        <Route path="/mymonkey">
           <MyMonkeyPage
             user={user}
+            setUser={setUser}
             foodCounts={foodCounts}
             setFoodCounts={setFoodCounts}
             hunger={hunger}

@@ -1,5 +1,10 @@
 import { createContext, useState, useEffect } from "react";
 
+/*
+Acknowledgement:
+This file was used from Stephen Grider's 'Modern React with Redux' Udemy course
+*/
+
 const NavigationContext = createContext();
 
 // Handles page navigation based on URL path
