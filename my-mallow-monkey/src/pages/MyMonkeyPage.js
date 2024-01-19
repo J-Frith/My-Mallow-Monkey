@@ -1,19 +1,10 @@
-import { useState } from "react";
 import Button from "../components/Button";
 
 // Page for the user to interact with their monkey
-function MyMonkeyPage() {
+function MyMonkeyPage({ user, foodCounts, setFoodCounts, hunger, setHunger }) {
   const foodTypes = ["Banana", "Grape", "Watermelon"];
 
-  // State tracking counts for each type of food
-  const [foodCounts, setFoodCounts] = useState({
-    Banana: 3,
-    Grape: 2,
-    Watermelon: 1,
-  });
-
-  // State tracking monkey hunger level
-  const [hunger, setHunger] = useState(75);
+  console.log("MyMonkeyPage sees user to be:", user); // delme
 
   // Handler for food type button to adjust appropriate food counter and hunger level
   const handleClick = (foodName) => {
